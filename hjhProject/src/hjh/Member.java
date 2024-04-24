@@ -34,7 +34,7 @@ public class Member {
 	
 	@Override
 	public String toString() {
-		return "Member [memNo=" + memNo + ", name=" + name + ", number=" + number + ", bookNo=" + bookNo + "]";
+		return memNo + "\t" + name + "\t" + number + "\t" + bookNo;
 	}
 	
 	
