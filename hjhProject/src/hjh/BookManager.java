@@ -55,6 +55,7 @@ public class BookManager {
 		SearchVO search = new SearchVO();
 		List<Book> book = dao.bookList(search);
 		System.out.println("도서번호	 도서제목	  	저자		구매일 		 	가격");
+		System.out.println("도서번호	 도서제목	  	저자		구매일 		 	가격");
 		System.out.println("------------------------------------------------------------------------");
 		for (Book bk : book) {
 			System.out.println(bk.toString());
