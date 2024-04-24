@@ -31,11 +31,10 @@ public class Member {
 	public void setBookNo(int bookNo) {
 		this.bookNo = bookNo;
 	}
-	
 	@Override
 	public String toString() {
-		return memNo + "\t" + name + "\t" + number + "\t" + bookNo;
+		return memNo + "  " + name + "  " + number + "  " + bookNo;
 	}
 	
-	
+
 }

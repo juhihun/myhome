@@ -8,7 +8,7 @@ public class BookDAO {
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
-	
+
 	private void getconn() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
@@ -58,19 +58,20 @@ public class BookDAO {
 
 		return list;
 	}
-
+	//도서
 	// 도서등록기능
-	boolean insertBook(Book book) {
+	
+	boolean insertBook(UpdateVO update) {
 		getconn();
 		String sql = "insert into book(book_no, book_title,author,buy_date,price)"//
-					+ "values(book_seq.nextval,?,?,?,?)";//
+				+ "values(book_seq.nextval,?,?,?,?)";//
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, book.getTitle());
-			psmt.setString(2, book.getAuthor());
-			psmt.setString(3, book.getBuydate());
-			psmt.setString(4, book.getPrice());
+			psmt.setString(1, update.getTitle());
+			psmt.setString(2, update.getAuthor());
+			psmt.setString(3, update.getBuyDate());
+			psmt.setString(4, update.getPrice());
 
 			int r = psmt.executeUpdate();
 			if (r > 0) {
@@ -128,11 +129,42 @@ public class BookDAO {
 		return false;
 	}
 
+	// 대출도서목록기능
+	List<RentBook> returnlist() {
+		List<RentBook> list = new ArrayList<>();
+		getconn();
+		String sql = "select b.book_no, bk.book_title, author,  decode(rent_return, 'Y', '대출', '반납')  as flag, m.mem_name, rent_date,return_date\r\n"
+				+ "from rent_book b\r\n" + "join mem m\r\n" + "on b.men_no = m.mem_no\r\n" + "join book bk\r\n"
+				+ "on b.book_no = bk.book_no\r\n" + "order by b.book_no";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				RentBook bk = new RentBook();
+				bk.setBookNo(rs.getInt("book_no"));
+				bk.setBookTitle(rs.getString("book_title"));
+				bk.setAuthor(rs.getString("author"));
+				bk.setRentreturn(rs.getString("flag"));
+				bk.setName(rs.getString("mem_name"));
+				bk.setRentdate(rs.getString("rent_date"));
+				bk.setReturndate(rs.getString("return_date"));
+
+				list.add(bk);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
 	// 회원목록
 	List<Member> memberList() {
-		getconn();
 		List<Member> list = new ArrayList<>();
-		String sql = "select * from mem";
+		getconn();
+		String sql = "select * from mem\r\n";
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -154,4 +186,7 @@ public class BookDAO {
 		return list;
 	}
 
+	
+	
+	
 }

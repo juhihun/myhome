@@ -2,16 +2,18 @@ package hjh;
 
 import java.util.*;
 
+//import co.yedam.Member;
+
 public class BookManager {
 
 	BookDAO dao = new BookDAO();
 	Scanner sc = new Scanner(System.in);
-	
+
 	public void exe() {
 
 		boolean run = true;
 		while (run) {
-			System.out.println(" 1.도서목록 2.전체도서관리 3.대출도서관리 4.회원관리 5.종료");
+			System.out.println(" 1.도서목록 2.전체도서관리 3.대출도서현황 4.회원관리 5.종료");
 			System.out.print("선택>>");
 			int ch = sc.nextInt();
 			sc.nextLine();
@@ -20,40 +22,25 @@ public class BookManager {
 			case 1: // 1.도서목록
 				bookList();
 				break;
-		
+
 			case 2: // 2.전체도서관리
-				System.out.println(" 1.도서신규등록 2.도서정보수정 3.도서삭제 4.돌아가기");
-				int ch2 = sc.nextInt();
 				bookManage();
 				break;
 
-			case 3: // 3.대출도서관리
-				System.out.print("수정할 도서 번호> ");
-				int up = Integer.parseInt(sc.nextLine());
-				System.out.print("도서제목 > ");
-				String ti = sc.nextLine();
+			case 3: // 3.대출도서현황
+				System.out.println("대출도서현황");
 
-				System.out.print("저자 > ");
-				String au = sc.nextLine();
-
-				System.out.print("가격 > ");
-				String pr = sc.nextLine();
-
-				
-//				bk = new Book();
-//				bk.setTitle(ti);
-//				bk.setAuthor(au);
-//				bk.setPrice(pr);
-//
-//				if (dao.updateBook(bk)) {
-//					System.out.println("수정완료");
-//				} else {
-//					System.out.println("처리실패");
-//				}
+				List<RentBook> list = dao.returnlist();
+				System.out.println("도서번호	 도서제목	  	저자	  대출여부	회원이름      대출날짜  반납기한일");
+				System.out.println("-------------------------------------------------------------------------");
+				for (RentBook rent : list) {
+					System.out.println(rent.toString());
+				}
 				break;
 
 			case 4: // 4.회원관리
 				manageMember();
+
 				break;
 			case 5:
 				System.out.println("프로그램 종료");
@@ -119,68 +106,91 @@ public class BookManager {
 
 	void bookManage() {
 		boolean run3 = true;
-		while(run3) {
+		while (run3) {
+			UpdateVO update = new UpdateVO(update);
 			
 			System.out.println(" 1.도서신규등록 2.도서정보수정 3.도서삭제 4.돌아가기");
 			System.out.println("선택>> ");
-			int ch2 = sc.nextInt();
+			int ch3 = sc.nextInt();
 			sc.nextLine();
+
+		switch (ch3) {
+		case 1:
+			System.out.print("- 도서 신규 등록");
+			System.out.println("도서명> ");
+			String ti = sc.nextLine();
+
+			System.out.println("구매일자> ");
+			String bu = sc.nextLine();
+
+			System.out.println("저자> ");
+			String au = sc.nextLine();
+
+			System.out.println("가격> ");
+			String pr = sc.nextLine();
 		
-//		switch (ch2) {
-//		case 1:
-//			System.out.print("- 도서 신규 등록");
-//			
-//			search.setBookNo(sc.nextLine());
+			
+			update.setTitle(ti);
+			update.setBuyDate(bu);
+			update.setAuthor(au);
+			update.setPrice(pr);
+			
+			if(dao.updateBook(update)) {
+				System.out.println("정상 등록");
+			}else {
+				System.out.println("등록 실패");
+			}
 //			break;
-//		case 2:
-//			System.out.print("도서제목를 입력하세요> ");
-//			search.setTitle(sc.nextLine());
-//			break;
-//
-//		case 3:
-//			System.out.print("저자를 입력하세요> ");
-//			search.setAuthor(sc.nextLine());
-//			break;
-//
-//		case 4:
-//			run2 = false;
-//			return;
-//		}
+			
+		case 2:
+			System.out.print("저자명> ");
+			update.setTitle(sc.nextLine());
+			break;
 
-		System.out.println("도서명> ");
-		String ti = sc.nextLine();
+		case 3:
+			System.out.print("저자를 입력하세요> ");
+			update.setAuthor(sc.nextLine());
+			break;
 
-		System.out.println("구매일자> ");
-		String bu = sc.nextLine();
-
-		System.out.println("저자> ");
-		String au = sc.nextLine();
-
-		System.out.println("가격> ");
-		String pr = sc.nextLine();
-
-		Book bk = new Book();
-		bk.setTitle(ti);
-		bk.setBuydate(bu);
-		bk.setAuthor(au);
-		bk.setPrice(pr);
-
-		if (dao.insertBook(bk)) {
-			System.out.println("정상등록");
-		} else {
-			System.out.println("예외발생");
+		case 4:
+			run3 = false;
+			return;
 		}
+
+			System.out.println("도서명> ");
+			String ti = sc.nextLine();
+
+			System.out.println("구매일자> ");
+			String bu = sc.nextLine();
+
+			System.out.println("저자> ");
+			String au = sc.nextLine();
+
+			System.out.println("가격> ");
+			String pr = sc.nextLine();
+
+			Book bk = new Book();
+			bk.setTitle(ti);
+			bk.setBuydate(bu);
+			bk.setAuthor(au);
+			bk.setPrice(pr);
+
+			if (dao.insertBook(bk)) {
+				System.out.println("정상등록");
+			} else {
+				System.out.println("예외발생");
+			}
 		}
 	}
-	
+
 	void manageMember() {
 		List<Member> mem = dao.memberList();
-		System.out.println("회원번호	회원명	 회원연락처 		대출도서번호 연체여부");
-		System.out.println("------------------------------------------------------------------------");
+		System.out.println("회원번호	회원명 회원연락처 대출도서번호 ");
+		System.out.println("------------------------------------------------");
 		for (Member mm : mem) {
-			System.out.println(mem.toString());
+			System.out.println(mm.toString());
 		}
-		
+		System.out.println();
 	}
-	
+
 } // end of class.
