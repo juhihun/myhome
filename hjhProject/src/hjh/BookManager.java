@@ -107,7 +107,7 @@ public class BookManager {
 	void bookManage() {
 		boolean run3 = true;
 		while (run3) {
-			UpdateVO update = new UpdateVO(update);
+			UpdateVO update = new UpdateVO();
 			
 			System.out.println(" 1.도서신규등록 2.도서정보수정 3.도서삭제 4.돌아가기");
 			System.out.println("선택>> ");
@@ -135,7 +135,7 @@ public class BookManager {
 			update.setAuthor(au);
 			update.setPrice(pr);
 			
-			if(dao.updateBook(update)) {
+			if(dao.insertBook(update)) {
 				System.out.println("정상 등록");
 			}else {
 				System.out.println("등록 실패");
@@ -156,31 +156,9 @@ public class BookManager {
 			run3 = false;
 			return;
 		}
-
-			System.out.println("도서명> ");
-			String ti = sc.nextLine();
-
-			System.out.println("구매일자> ");
-			String bu = sc.nextLine();
-
-			System.out.println("저자> ");
-			String au = sc.nextLine();
-
-			System.out.println("가격> ");
-			String pr = sc.nextLine();
-
-			Book bk = new Book();
-			bk.setTitle(ti);
-			bk.setBuydate(bu);
-			bk.setAuthor(au);
-			bk.setPrice(pr);
-
-			if (dao.insertBook(bk)) {
-				System.out.println("정상등록");
-			} else {
-				System.out.println("예외발생");
-			}
+	
 		}
+		
 	}
 
 	void manageMember() {
