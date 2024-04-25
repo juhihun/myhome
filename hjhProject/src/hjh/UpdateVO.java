@@ -4,18 +4,11 @@ public class UpdateVO {
 
 		private String title;
 		private String author;
-		private String bookNo;
+		private int bookNo;
 		private String price;
 		private String buyDate;
 		
 
-		public String getBuyDate() {
-			return buyDate;
-		}
-
-		public void setBuyDate(String buyDate) {
-			this.buyDate = buyDate;
-		}
 
 		public String getTitle() {
 			return title;
@@ -33,11 +26,11 @@ public class UpdateVO {
 			this.author = author;
 		}
 
-		public String getBookNo() {
+		public int getBookNo() {
 			return bookNo;
 		}
 
-		public void setBookNo(String bookNo) {
+		public void setBookNo(int bookNo) {
 			this.bookNo = bookNo;
 		}
 
@@ -47,6 +40,13 @@ public class UpdateVO {
 
 		public void setPrice(String price) {
 			this.price = price;
+		}
+		public String getBuyDate() {
+			return buyDate;
+		}
+		
+		public void setBuyDate(String buyDate) {
+			this.buyDate = buyDate;
 		}
 
 		@Override

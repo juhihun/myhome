@@ -6,7 +6,14 @@ public class Member {
 	private String name;
 	private String number;
 	private int bookNo;
+	private int bookcount; 
 	
+	public int getBookcount() {
+		return bookcount;
+	}
+	public void setBookcount(int bookcount) {
+		this.bookcount = bookcount;
+	}
 	public int getMemNo() {
 		return memNo;
 	}
@@ -33,8 +40,8 @@ public class Member {
 	}
 	@Override
 	public String toString() {
-		return memNo + "  " + name + "  " + number + "  " + bookNo;
+		return  memNo +  "\t"+ name + "\t" + number + "\t"
+				+ "\t" + bookcount ;
 	}
-	
 
 }
