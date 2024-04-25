@@ -10,7 +10,7 @@ public class ReturnP {
 	public void system() {
 		boolean run = true;
 		while(run) {
-			System.out.println("1.대출 2.반납 3.돌아가기");
+			System.out.println("1.대출\t2.반납\t3.돌아가기");
 			System.out.print("선택>>");
 			int ch = Integer.parseInt(sc.nextLine());
 			

@@ -16,9 +16,9 @@ public class BookManager {
 
 		boolean run = true;
 		while (run) {
-			System.out.println("================================================================");
-			System.out.println(" 1.도서목록 2.전체도서관리 3.대출도서현황 4.회원관리 5.대출,반납 6.종료");
-			System.out.println("================================================================");
+			System.out.println("========================================================================================");
+			System.out.println(" 1.도서목록\t2.전체도서관리\t3.대출도서현황\t4.회원관리\t5.대출,반납\t6.종료");
+			System.out.println("========================================================================================");
 			System.out.print("- 번호입력 : ");
 			int ch = sc.nextInt();
 			sc.nextLine();
@@ -82,23 +82,25 @@ public class BookManager {
 		while (run2) {
 			SearchVO search = new SearchVO();
 
-			System.out.println("1.도서번호검색 2.제목검색 3.저자검색 4.돌아가기");
-			System.out.print("선택>>");
+			System.out.println("\t<세부선택>");
+			System.out.println("\t1.도서번호검색\t2.제목검색\t3.저자검색\t4.돌아가기");
+			System.out.print("\t선택>>");
+			
 			int ch2 = sc.nextInt();
 			sc.nextLine();
 
 			switch (ch2) {
 			case 1:
-				System.out.print("도서번호를 입력하세요> ");
+				System.out.print("\t도서번호를 입력하세요> ");
 				search.setBookNo(sc.nextLine());
 				break;
 			case 2:
-				System.out.print("도서제목를 입력하세요> ");
+				System.out.print("\t도서제목를 입력하세요> ");
 				search.setTitle(sc.nextLine());
 				break;
 
 			case 3:
-				System.out.print("저자를 입력하세요> ");
+				System.out.print("\t저자를 입력하세요> ");
 				search.setAuthor(sc.nextLine());
 				break;
 
@@ -110,7 +112,7 @@ public class BookManager {
 			List<Book> book1 = dao.bookList(search);
 
 			System.out.println("\t도서번호\t\t도서제목\t\t  저자\t\t구매일\t\t\t\t가격");
-			System.out.println("----------------------------------------------------------------------------------------------------------");
+			System.out.println("\t---------------------------------------------------------------------------------------------------");
 
 			for (Book bk1 : book1) {
 				System.out.println(bk1.toString());
@@ -123,23 +125,23 @@ public class BookManager {
 		while (run3) {
 			UpdateVO update = new UpdateVO();
 
-			System.out.println(" 1.도서신규등록 2.도서정보수정 3.도서삭제 4.돌아가기");
-			System.out.print("선택>> ");
+			System.out.println("1.도서신규등록\t2.도서정보수정\t3.도서삭제\t4.돌아가기");
+			System.out.print("선택>>\t");
 			int ch3 = sc.nextInt();
 			sc.nextLine();
 			switch (ch3) {
 			case 1:
-				System.out.print("○ 도서 신규 등록");
-				System.out.println("도서명> ");
+				System.out.println("○ 도서 신규 등록");
+				System.out.print("도서명> ");
 				String ti = sc.nextLine();
 
-				System.out.println("구매일자> ");
+				System.out.print("구매일자> ");
 				String bu = sc.nextLine();
 
-				System.out.println("저자> ");
+				System.out.print("저자> ");
 				String au = sc.nextLine();
 
-				System.out.println("가격> ");
+				System.out.print("가격> ");
 				String pr = sc.nextLine();
 
 
