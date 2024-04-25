@@ -1,7 +1,7 @@
 package hjh;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
 //import co.yedam.Member;
 
@@ -16,8 +16,10 @@ public class BookManager {
 
 		boolean run = true;
 		while (run) {
-			System.out.println(" 1.도서목록 2.전체도서관리 3.대출도서현황 4.회원관리 5.대출 및 반납 6.종료");
-			System.out.print("선택>>");
+			System.out.println("================================================================");
+			System.out.println(" 1.도서목록 2.전체도서관리 3.대출도서현황 4.회원관리 5.대출,반납 6.종료");
+			System.out.println("================================================================");
+			System.out.print("- 번호입력 : ");
 			int ch = sc.nextInt();
 			sc.nextLine();
 
@@ -34,8 +36,8 @@ public class BookManager {
 				System.out.println("○ 대출도서현황");
 
 				List<RentBook> list = rdao.returnlist();
-				System.out.println("도서번호	 도서제목	  	저자	  대출여부	회원이름      대출날짜  반납기한일");
-				System.out.println("====================================================================================");
+				System.out.println("\t도서번호\t\t도서제목\t\t 저자\t  대출여부       회원이름\t\t대출날짜\t\t\t반납기한일");
+				System.out.println("-----------------------------------------------------------------------------------------------------------------------");
 				for (RentBook rent : list) {
 					System.out.println(rent.toString());
 				}
@@ -65,8 +67,8 @@ public class BookManager {
 		SearchVO search = new SearchVO();
 		List<Book> book = dao.bookList(search);
 		
-		System.out.println("도서번호	 도서제목	  	저자		구매일 		 	가격");
-		System.out.println("===========================================================================");
+		System.out.println("\t도서번호\t\t도서제목\t\t  저자\t\t구매일\t\t\t\t가격");
+		System.out.println("----------------------------------------------------------------------------------------------------------");
 		for (Book bk : book) {
 			System.out.println(bk.toString());
 		}
@@ -107,8 +109,8 @@ public class BookManager {
 
 			List<Book> book1 = dao.bookList(search);
 
-			System.out.println("도서번호	 도서제목	  	저자		구매일 		 	가격");
-			System.out.println("=====================================================================");
+			System.out.println("\t도서번호\t\t도서제목\t\t  저자\t\t구매일\t\t\t\t가격");
+			System.out.println("----------------------------------------------------------------------------------------------------------");
 
 			for (Book bk1 : book1) {
 				System.out.println(bk1.toString());
@@ -122,7 +124,7 @@ public class BookManager {
 			UpdateVO update = new UpdateVO();
 
 			System.out.println(" 1.도서신규등록 2.도서정보수정 3.도서삭제 4.돌아가기");
-			System.out.println("선택>> ");
+			System.out.print("선택>> ");
 			int ch3 = sc.nextInt();
 			sc.nextLine();
 			switch (ch3) {
@@ -216,8 +218,8 @@ public class BookManager {
 			switch (ch3) {
 			case 1 :
 				List<Member> list = mdao.memberList();
-				System.out.println("회원번호	회원명	    회원연락처           대여권수");
-				System.out.println("===================================================");
+				System.out.println("\t회원번호\t  회원명\t\t   회원연락처\t대여권수");
+				System.out.println("---------------------------------------------------------");
 				for (Member mm : list) {
 					System.out.println(mm.toString());
 				}

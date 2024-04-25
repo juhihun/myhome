@@ -39,9 +39,10 @@ public class Member {
 		this.bookNo = bookNo;
 	}
 	@Override
+
 	public String toString() {
-		return  memNo +  "\t"+ name + "\t" + number + "\t"
-				+ "\t" + bookcount ;
+		return String.format("\t%3d\t%6s\t\t%10s\t  %2d",memNo,name,number,bookcount);
 	}
+	
 
 }

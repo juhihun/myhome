@@ -40,11 +40,13 @@ public class Book {
 	}
 	
 	@Override
+//	public String toString() {
+//		return  bookNo + "\t" + title + "\t" + author + "\t" + buydate
+//				+ "\t" + price;
+//	}
 	public String toString() {
-		return  bookNo + "\t" + title + "\t" + author + "\t" + buydate
-				+ "\t" + price;
+		return String.format("\t%3d\t  %10s\t  %10s\t%20s\t%20s",bookNo,title,author,buydate,price);
 	}
-	
 	
 
 	

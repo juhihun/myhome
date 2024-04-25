@@ -11,7 +11,7 @@ public class ReturnP {
 		boolean run = true;
 		while(run) {
 			System.out.println("1.대출 2.반납 3.돌아가기");
-			System.out.println("선택>>");
+			System.out.print("선택>>");
 			int ch = Integer.parseInt(sc.nextLine());
 			
 			switch(ch){

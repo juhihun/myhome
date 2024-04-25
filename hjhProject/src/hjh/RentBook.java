@@ -69,8 +69,7 @@ public class RentBook {
 	}
 	@Override
 	public String toString() {
-		return bookNo + "\t" + bookTitle + "\t" + author + "\t"
-				+ rentreturn + "\t" + name+ "\t"+ rentdate + "\t" + returndate ;
+		return String.format("\t%3d\t  %10s\t  %10s\t%6s\t%10s\t%20s\t%20s",bookNo,bookTitle,author,rentreturn,name,rentdate,returndate);
 	}
 	
 	
