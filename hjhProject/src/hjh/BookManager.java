@@ -17,7 +17,7 @@ public class BookManager {
 		boolean run = true;
 		while (run) {
 			System.out.println("========================================================================================");
-			System.out.println(" 1.메렁도서목록\t2.전체도서관리\t3.대출도서현황\t4.회원관리\t5.대출,반납\t6.종료");
+			System.out.println(" 1.되따도서목록\t2.전체도서관리\t3.대출도서현황\t4.회원관리\t5.대출,반납\t6.종료");
 			System.out.println("========================================================================================");
 			System.out.print("- 번호입력 : ");
 			int ch = sc.nextInt();
