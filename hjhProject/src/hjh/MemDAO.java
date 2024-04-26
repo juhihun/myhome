@@ -1,6 +1,9 @@
 package hjh;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +28,14 @@ public class MemDAO {
 	List<Member> memberList() {
 		List<Member> list = new ArrayList<>();
 		getconn();
-		String sql = "select mem_no,mem_phone, m.mem_name,count(b.book_no) as bookc\r\n"
-				+ "from rent_book b right join mem m\r\n"
-				+ "on b.men_no = m.mem_no\r\n"
-				+ "group by  m.mem_no, mem_phone, m.mem_name\r\n"
-				+ "order by m.mem_no";
-
+		String sql = "select mem_no, mem_phone, m.mem_name,trunc(b.return_date) return_date,b.rent_return, count(b.book_no) as bookc"
+				+ " ,case when trunc(b.return_date) < sysdate then 'O'when trunc(b.return_date) is null then ' '"
+				+ " else 'X'"
+		        + " end return_status"
+		        + " from rent_book b" 
+		        + " right join mem m on b.men_no = m.mem_no"
+		        + " group by  m.mem_no, mem_phone, m.mem_name, trunc(b.return_date), b.rent_return"
+		        + "	order by m.mem_no";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -40,7 +45,8 @@ public class MemDAO {
 				mm.setName(rs.getString("mem_name"));
 				mm.setNumber(rs.getString("mem_phone"));
 				mm.setBookcount(rs.getInt("bookc"));
-
+				mm.setReturnStatus(rs.getString("return_status"));
+		
 				list.add(mm);
 			}
 

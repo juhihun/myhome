@@ -7,7 +7,14 @@ public class Member {
 	private String number;
 	private int bookNo;
 	private int bookcount; 
+	private String returnStatus;
 	
+	public String getReturnStatus() {
+		return returnStatus;
+	}
+	public void setReturnStatus(String returnStatus) {
+		this.returnStatus = returnStatus;
+	}
 	public int getBookcount() {
 		return bookcount;
 	}
@@ -41,7 +48,7 @@ public class Member {
 	@Override
 
 	public String toString() {
-		return String.format("\t%3d\t%6s\t\t%10s\t  %2d",memNo,name,number,bookcount);
+		return String.format("\t%3d\t%6s\t\t%10s\t  %2d\t %2s",memNo,name,number,bookcount,returnStatus);
 	}
 	
 

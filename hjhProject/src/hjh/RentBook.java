@@ -67,7 +67,8 @@ public class RentBook {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Override
+
+			@Override
 	public String toString() {
 		return String.format("\t%3d\t  %10s\t  %10s\t%6s\t%10s\t%20s\t%20s",bookNo,bookTitle,author,rentreturn,name,rentdate,returndate);
 	}
