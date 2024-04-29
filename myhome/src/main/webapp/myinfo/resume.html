@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--myinfo/resume.html-->
+
+<h3> 자기소개서 </h3>
+<table border='1'>
+	<tr>
+		<th>이름</th><td>현주희</td>
+		<th>연락처</th><td>010-5555-6354</td>
+		<th>성별</th><td>여</td>
+	</tr>
+</table>
+<button>추가</button>
+<a href="../">첫페이지로 이동</a>
+<script>
+	//Dom제어.
+	document.querySelector('td').innerText = 'hyunjoohui';
+	document.querySelector('td:nth-of-type(2)').innerText = '010-3333-1111';
+	document.querySelector('td:nth-of-type(3)').innerText = 'women';
+	
+	//추가버튼 클릭 -> 이름: 홍길동 연락처 :010-1212-2323, 성별: 남
+</script>
+</body>
+</html>
